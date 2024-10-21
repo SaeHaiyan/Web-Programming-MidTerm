@@ -50,7 +50,7 @@
                     @endif
 
                     <div class="col-md-8 text-left space-mono">
-                        <p style="font-size: 18px;">{{ __('Hi, welcome to Video Games Rental System!') }}</p>
+                        <p style="font-size: 18px;">Hi Admin, welcome to Video Games Rental System!</p>
 
                         <!-- Add an introduction image -->
                         <img src="https://media.wired.com/photos/5f7e325a8e38d8a7e74a9f1e/16:9/w_1576,h_886,c_limit/games_gear_libraries_939318912.jpg" alt="Welcome Image" class="img-fluid rounded mb-4" style="max-width: 80%;">
@@ -61,7 +61,7 @@
 
                     <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
                         <a href="{{ route('rentals.index') }}" class="btn main-menu-btn" style="background-color: rgb(5, 130, 175); color: white;">Rentals</a>
-                        <a href="{{ route('customers.index') }}" class="btn main-menu-btn" style="background-color: rgb(0, 255, 34); color: black;">Customers</a>
+                        <a href="{{ route('admin.customers1.index') }}" class="btn main-menu-btn" style="background-color: rgb(0, 255, 34); color: black;">Customers</a>
                         <a href="{{ route('games.index') }}" class="btn main-menu-btn" style="background-color:rgb(0, 255, 34); color: black;">Games</a>
                     </div>
                 </div>

@@ -27,13 +27,13 @@
                     <td>{{ $rental->rental_date }}</td>
                     <td>{{ $rental->return_date }}</td>
                     <td>
-                        <a href="{{ route('rentals.show', $rental->id) }}" class="btn" style="background-color:rgb(5, 130, 175); color: white;">View</a>
+                        {{-- <a href="{{ route('rentals.show', $rental->id) }}" class="btn" style="background-color:rgb(5, 130, 175); color: white;">View</a>
                         <a href="{{ route('rentals.edit', $rental->id) }}" class="btn" style="background-color: rgb(5, 130, 175); color: white;">Edit</a>
                         <form action="{{ route('rentals.destroy', $rental->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn" style="background-color: black; color: white;">Delete</button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach
