@@ -10,29 +10,30 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Genre</th>
                 <th>Price</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($games as $game)
                 <tr>
                     <td>{{ $game->id }}</td>
-                    <td>{{ $game->title }} <br>
+                    <td>{{ $game->title }}</td>
+                    <td>
                         <img src="{{ asset('images/' . $game->image) }}" alt="{{ $game->title }}" />
                     </td>
                     <td>{{ $game->genre }}</td>
                     <td>{{ $game->price }}</td>
-                    <td>
-                        {{-- <a href="{{ route('games.show', $game->id) }}" class="btn" style="background-color: rgb(5, 130, 175); color: white;">View</a>
+                    {{-- <td>
+                        <a href="{{ route('games.show', $game->id) }}" class="btn" style="background-color: rgb(5, 130, 175); color: white;">View</a>
                         <a href="{{ route('games.edit', $game->id) }}" class="btn" style="background-color: rgb(5, 130, 175); color: white;">Edit</a>
                         <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn" style="background-color: black; color: white;">Delete</button>
-                        </form> --}}
-                    </td>
+                        </form>
+                    </td> --}}
                 </tr>
             @endforeach
         </tbody>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <h1 class="text-center mb-4" style="color: yellow; font-family: 'Press Start 2P', cursive;">Rentals</h1>
@@ -14,6 +14,7 @@
                 <th>Price</th>
                 <th>Rental Date</th>
                 <th>Return Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,7 @@
                     <td>{{ $rental->game->price }}</td>
                     <td>{{ $rental->rental_date }}</td>
                     <td>{{ $rental->return_date }}</td>
-                    {{-- <td>
+                    <td>
                         <a href="{{ route('rentals.show', $rental->id) }}" class="btn" style="background-color:rgb(5, 130, 175); color: white;">View</a>
                         <a href="{{ route('rentals.edit', $rental->id) }}" class="btn" style="background-color: rgb(5, 130, 175); color: white;">Edit</a>
                         <form action="{{ route('rentals.destroy', $rental->id) }}" method="POST" style="display:inline;">
@@ -33,7 +34,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn" style="background-color: black; color: white;">Delete</button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
             @endforeach
         </tbody>

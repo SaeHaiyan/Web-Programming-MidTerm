@@ -7,7 +7,7 @@
 
 <div class="container mb-5">
     <div class="p-4 border border-secondary rounded shadow-lg" style="background-color: rgba(0, 0, 0, 0.8); color: white;"> <!-- Container styling -->
-        <form action="{{ route('games.update', $game->id) }}" method="POST">
+        <form action="{{ route('admin.games1.update', $game->id) }}" method="POST">
             @csrf
             @method('PUT')
 

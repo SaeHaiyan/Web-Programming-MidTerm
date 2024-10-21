@@ -20,16 +20,18 @@
                     <td>{{ $game->id }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
-                    <td>{{ $game->name }}</td>
+                    <th>Title</th>
+                    <td>{{ $game->title }} <br>
+                        <img src="{{ asset('images/' . $game->image) }}" alt="{{ $game->title }}" />
+                    </td>
                 </tr>
                 <tr>
-                    <th>Email</th>
-                    <td>{{ $game->email }}</td>
+                    <th>Genre</th>
+                    <td>{{ $game->genre }}</td>
                 </tr>
                 <tr>
-                    <th>Phone</th>
-                    <td>{{ $game->phone }}</td>
+                    <th>Price</th>
+                    <td>{{ $game->price }}</td>
                 </tr>
             </tbody>
         </table>

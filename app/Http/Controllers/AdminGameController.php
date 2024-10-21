@@ -21,8 +21,31 @@ class AdminGameController extends Controller
 
     public function store(Request $request)
     {
-        Game::create($request->all());
-        return redirect()->route('admin.games1.index');
+        // Validate the request data
+        $request->validate([
+            'title' => 'required',
+            'genre' => 'nullable',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = null; // If no image is uploaded
+        }
+
+        // Create the game record
+        Game::create([
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'price' => $request->price,
+            'image' => $imageName, // Store the image path in the database
+        ]);
+
+        return redirect()->route('admin.games1.index')->with('success', 'Game created successfully.');
     }
 
     public function show(game $game)

@@ -4,7 +4,9 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminGameController;
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminRentalController;
 use App\Http\Controllers\AdminCustomerController;
 
 Route::get('/', function () {
@@ -22,9 +24,10 @@ Route::middleware('auth')->group(function () {
 });
 
 // Resource routes for customers, rentals, and games
-Route::resource('customers', CustomerController::class);
-Route::resource('rentals', RentalController::class);
-Route::resource('games', GameController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('rentals', RentalController::class);
+    Route::resource('games', GameController::class);
+
 
 require __DIR__.'/auth.php';
 
@@ -38,8 +41,14 @@ Route::middleware(['auth', 'admin'])->group(function (){
         'as' => 'admin',
         'parameters' => ['customers1' => 'customer']
     ]);
-    Route::resource('rentals1', RentalController::class);
-    Route::resource('admin/games1', GameController::class, 
+
+    Route::resource('rentals1', AdminRentalController::class,
+    [
+        'as' => 'admin',
+        'parameters' => ['rentals1' => 'rental']
+    ]);
+
+    Route::resource('admin/games1', AdminGameController::class, 
     [
         'as' => 'admin',
         'parameters' => ['games1' => 'game']
