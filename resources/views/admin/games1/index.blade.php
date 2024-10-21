@@ -22,7 +22,7 @@
                     <td>{{ $game->id }}</td>
                     <td>{{ $game->title }}</td>
                     <td>
-                        <img src="{{ asset('images/' . $game->image) }}" alt="{{ $game->title }}" />
+                        <img src="{{ asset('images/' . $game->image) }}" alt="{{ $game->title }}" style="width: 150px; height: auto;"/>
                     </td>
                     <td>{{ $game->genre }}</td>
                     <td>{{ $game->price }}</td>
