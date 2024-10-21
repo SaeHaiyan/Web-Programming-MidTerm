@@ -35,16 +35,11 @@ class AdminCustomerController extends Controller
         return view('admin.customers1.edit', compact('customer'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        // Validate and update the customer
-        $customer = Customer::findOrFail($id);
         $customer->update($request->all());
-
-        // Redirect or return response
         return redirect()->route('admin.customers1.index')->with('success', 'Customer updated successfully!');
     }
-
 
     public function destroy(Customer $customer)
     {

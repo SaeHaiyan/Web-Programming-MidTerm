@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <style>
@@ -62,7 +62,7 @@
                     <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
                         <a href="{{ route('rentals.index') }}" class="btn main-menu-btn" style="background-color: rgb(5, 130, 175); color: white;">Rentals</a>
                         <a href="{{ route('admin.customers1.index') }}" class="btn main-menu-btn" style="background-color: rgb(0, 255, 34); color: black;">Customers</a>
-                        <a href="{{ route('games.index') }}" class="btn main-menu-btn" style="background-color:rgb(0, 255, 34); color: black;">Games</a>
+                        <a href="{{ route('admin.games1.index') }}" class="btn main-menu-btn" style="background-color:rgb(0, 255, 34); color: black;">Games</a>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center" style="color: yellow; font-family: 'Press Start 2P', cursive; margin-bottom: 30px;">
-        <i class="fas fa-user"></i> Customer Details
+        <i class="fas fa-user"></i> Game Details
     </h1> <!-- Added icon to the title -->
 
     <div class="p-4 border border-secondary rounded shadow-lg" style="background-color: rgba(0, 0, 0, 0.7); color: white;"> <!-- Darker container for contrast -->
@@ -17,24 +17,24 @@
             <tbody>
                 <tr>
                     <th>ID</th>
-                    <td>{{ $customer->id }}</td>
+                    <td>{{ $game->id }}</td>
                 </tr>
                 <tr>
                     <th>Name</th>
-                    <td>{{ $customer->name }}</td>
+                    <td>{{ $game->name }}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>{{ $customer->email }}</td>
+                    <td>{{ $game->email }}</td>
                 </tr>
                 <tr>
                     <th>Phone</th>
-                    <td>{{ $customer->phone }}</td>
+                    <td>{{ $game->phone }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="{{ route('admin.customers1.index') }}" class="btn" style="background-color: rgb(5, 130, 175); color: white; width: 100%; padding: 15px; font-family: 'Press Start 2P', cursive;">
+        <a href="{{ route('admin.games1.index') }}" class="btn" style="background-color: rgb(5, 130, 175); color: white; width: 100%; padding: 15px; font-family: 'Press Start 2P', cursive;">
             <i class="fas fa-arrow-left"></i> Back
         </a> <!-- Added icon to the button -->
     </div>

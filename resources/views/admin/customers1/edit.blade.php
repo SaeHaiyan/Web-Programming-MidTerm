@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container mt-5">
@@ -8,31 +8,22 @@
         <form action="{{ route('admin.customers1.update', $customer->id) }}" method="POST">
             @csrf
             @method('PUT')
-            
+            <!-- Input fields for the customer update -->
             <div class="form-group">
-                <label for="name" class="font-weight-bold">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $customer->name }}" required>
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $customer->name }}">
             </div>
-
-            <div class="form-group mt-3">
-                <label for="email" class="font-weight-bold">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $customer->email }}" required>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ $customer->email }}">
             </div>
-
-            <div class="form-group mt-3">
-                <label for="phone" class="font-weight-bold">Phone</label>
-                <input type="phone" class="form-control" id="phone" name="phone" value="{{ $customer->phone }}" required>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="phone" class="form-control" id="phone" name="phone" value="{{ $customer->phone }}">
             </div>
-
-            <div class="d-flex justify-content-between mt-4">
-                <a href="{{ route('admin.customers1.index') }}" class="btn" style="background-color: rgb(5, 130, 175); color: white; width: 48%; padding: 15px; font-family: 'Press Start 2P', cursive;">
-                    <i class="fas fa-arrow-left"></i> Back
-                </a>
-                <button type="submit" class="btn" style="background-color: rgb(5, 130, 175); color: white; width: 48%; padding: 15px; font-family: 'Press Start 2P', cursive;">
-                    <i class="fas fa-save"></i> Update
-                </button>
-            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
+        
     </div>
 </div>
 @endsection

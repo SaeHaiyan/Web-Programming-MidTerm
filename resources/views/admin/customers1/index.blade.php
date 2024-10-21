@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container mb-5">
@@ -25,8 +25,8 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->phone }}</td>
                         <td>
-                            <a href="{{ route('admin.customers1.show', ['id' => $customer->id]) }}" class="btn btn-sm" style="background-color:rgb(5, 130, 175); color: white;">View</a> <!-- Changed button color -->
-                            <a href="{{ route('admin.customers1.edit', ['id' => $customer->id]) }}" class="btn btn-sm" style="background-color: rgb(5, 130, 175); color: white;">Edit</a> <!-- Changed button color -->
+                            <a href="{{ route('admin.customers1.show', $customer->id) }}" class="btn btn-sm" style="background-color:rgb(5, 130, 175); color: white;">View</a> <!-- Changed button color -->
+                            <a href="{{ route('admin.customers1.edit', $customer->id) }}" class="btn btn-sm" style="background-color: rgb(5, 130, 175); color: white;">Edit</a> <!-- Changed button color -->
                             <form action="{{ route('admin.customers1.destroy', $customer->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

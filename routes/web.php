@@ -33,22 +33,18 @@ Route::middleware(['auth', 'admin'])->group(function (){
 
     Route::get('admin/dashboard', [AdminHomeController::class, 'index']);
 
-    // Admin customer routes
-    Route::get('admin/customers1', [AdminCustomerController::class, 'index'])->name('admin.customers1.index'); // Display all customers
-    Route::get('admin/customers1/create', [AdminCustomerController::class, 'create'])->name('admin.customers1.create'); // Display customer creation form
-    Route::post('admin/customers1', [AdminCustomerController::class, 'store'])->name('admin.customers1.store'); // Store new customer
-    
-    // Display a specific customer (GET instead of POST)
-    Route::get('admin/customers1/show/{id}', [AdminCustomerController::class, 'show'])->name('admin.customers1.show');
+    Route::resource('admin/customers1', AdminCustomerController::class, 
+    [
+        'as' => 'admin',
+        'parameters' => ['customers1' => 'customer']
+    ]);
+    Route::resource('rentals1', RentalController::class);
+    Route::resource('admin/games1', GameController::class, 
+    [
+        'as' => 'admin',
+        'parameters' => ['games1' => 'game']
+    ]);
 
-    // Edit customer form (GET instead of POST and proper slash)
-    Route::get('admin/customers1/edit/{id}', [AdminCustomerController::class, 'edit'])->name('admin.customers1.edit');
-    
-    // Update customer (PUT/PATCH instead of POST)
-    Route::put('admin/customers1/update/{id}', [AdminCustomerController::class, 'update'])->name('admin.customers1.update');
-
-    // Delete customer (with ID parameter)
-    Route::delete('admin/customers1/destroy/{id}', [AdminCustomerController::class, 'destroy'])->name('admin.customers1.destroy');
 });
 
 
