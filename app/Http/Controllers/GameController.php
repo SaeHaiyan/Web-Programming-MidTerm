@@ -8,9 +8,31 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::all();
+        $query = Game::query();
+
+        // Handle Search
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        // Handle Genre Filter
+        if ($request->has('genre') && $request->genre != '') {
+            $query->where('genre', $request->genre);
+        }
+
+        // Handle Sorting
+        if ($request->has('sort')) {
+            if ($request->sort == 'price') {
+                $query->orderBy('price', 'asc');
+            } else {
+                $query->orderBy('title', 'asc');
+            }
+        }
+
+        $games = $query->paginate(6); // You can adjust the pagination count
+
         return view('games.index', compact('games'));
     }
 

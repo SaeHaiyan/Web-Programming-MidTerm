@@ -20,15 +20,16 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- Custom styles -->
     <style>
         .navbar {
-            background-color: #000000;
+            background-color: #1a1a1a;
             font-family: 'Space Mono', monospace;
         }
         .navbar-brand, .nav-link {
             color: #ffffff;
             font-size: 1.2em;
-            font-family: 'Space Mono', monospace;
         }
         .nav-link:hover {
             color: #ffd700;
@@ -41,12 +42,113 @@
             font-family: 'Space Mono', monospace;
             font-size: 1.5em;
         }
+        .dropdown-toggle {
+            color: #ffffff;
+            padding: 5px 10px;
+        }
+        .dropdown-toggle:hover {
+            color: #ffd700;
+        }
+        .nav-link.logout {
+            font-size: 0.9em;
+            padding: 5px 10px;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .navbar-nav {
+            align-items: center;
+        }
+        body {
+            background: rgba(0, 0, 0, 0.7);
+            background-image: url('https://static.vecteezy.com/system/resources/previews/006/413/058/non_2x/soft-beautiful-abstract-background-you-can-use-this-background-for-your-content-like-as-technology-video-gaming-promotion-card-banner-sports-education-presentation-website-anymore-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
         footer {
-            background-color: #000000;
+            background-color: #1a1a1a;
             color: white;
-            padding: 20px 0;
-            text-align: center;
+            padding: 40px 0;
             font-family: 'Space Mono', monospace;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 220px;
+            margin: 10px;
+        }
+        .footer-section h5 {
+            margin-bottom: 10px;
+        }
+        .footer-section ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5em;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #ffd700;
+        }
+        footer p {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+        .pagination li {
+            margin: 0 5px;
+        }
+        .pagination li a, .pagination li span {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #FF204E;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #FF204E;
+            text-decoration: none;
+        }
+        .pagination li a:hover {
+            background-color: #FF204E;
+            color: white;
+        }
+        .pagination li.active span {
+            background-color: #FF204E;
+            color: white;
+        }
+        .pagination li.disabled span {
+            color: #ccc;
         }
     </style>
 </head>
@@ -58,31 +160,45 @@
                     <img src="https://static-00.iconduck.com/assets.00/console-controller-icon-2048x2048-pmmusn7m.png" alt="VGRS Icon">
                     VGRS
                 </a>
+                
+                <!-- Navbar Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentals.index') }}">Rentals</a>
+                            <a class="nav-link" href="{{ route('admin.rentals1.index') }}">Rentals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customers.index') }}">Customers</a>
+                            <a class="nav-link" href="{{ route('admin.customers1.index') }}">Customers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('games.index') }}">Games</a>
+                            <a class="nav-link" href="{{ route('admin.games1.index') }}">Games</a>
                         </li>
 
                         <!-- Authentication Links -->
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt"></i> Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         @endauth
                     </ul>
@@ -90,17 +206,47 @@
             </div>
         </nav>
 
-        <main class="py-4" style="background: rgba(0, 0, 0, 0.7); background-image: url('https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdhbWluZyUyMGtleWJvYXJkfGVufDB8fDB8fHww'); background-size: cover; background-position: center; min-height: 100vh;">
+        <main class="py-4">
             @yield('content')
         </main>
 
+        <!-- Footer -->
         <footer>
             <div class="container">
-                <div class="mt-2">
-                    <p>&copy; {{ date('Y') }} VGRS. All rights reserved.</p>
+                <div class="footer-content">
+                    <div class="footer-section about">
+                        <h5>About Us</h5>
+                        <p>VGRS is your gaming rental solution, providing access to the latest games and consoles.</p>
+                    </div>
+                    <div class="footer-section links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="{{ route('admin.rentals1.index') }}">Rentals</a></li>
+                            <li><a href="{{ route('admin.customers1.index') }}">Customers</a></li>
+                            <li><a href="{{ route('admin.games1.index') }}">Games</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section social">
+                        <h5>Follow Us</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <p>&copy; {{ date('Y') }} VGRS. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="{{ route('cookies-policy') }}">Cookies Policy</a> |
+                    <a href="{{ route('legal-terms') }}">Legal Terms</a> |
+                    <a href="{{ route('privacy-policy') }}">Privacy Policy</a>
                 </div>
             </div>
         </footer>
     </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

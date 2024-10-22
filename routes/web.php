@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RentalController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminRentalController;
 use App\Http\Controllers\AdminCustomerController;
 
+// Authentication routes
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -17,6 +19,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -24,16 +27,34 @@ Route::middleware('auth')->group(function () {
 });
 
 // Resource routes for customers, rentals, and games
-    Route::resource('customers', CustomerController::class);
-    Route::resource('rentals', RentalController::class);
-    Route::resource('games', GameController::class);
+Route::resource('customers', CustomerController::class);
+Route::resource('rentals', RentalController::class);
+Route::resource('games', GameController::class);
+
+// New pages routes
+Route::get('/cookies-policy', function () {
+    return view('cookies-policy'); // Ensure this view exists
+})->name('cookies-policy');
+
+Route::get('/legal-terms', function () {
+    return view('legal-terms'); // Ensure this view exists
+})->name('legal-terms');
+
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy'); // Ensure this view exists
+})->name('privacy-policy');
+
+// routes/web.php
+
+Route::get('/about-us', function () {
+    return view('about-us'); // Return the about-us view directly
+})->name('about-us');
 
 
 require __DIR__.'/auth.php';
 
 // Admin page routes
 Route::middleware(['auth', 'admin'])->group(function (){
-
     Route::get('admin/dashboard', [AdminHomeController::class, 'index']);
 
     Route::resource('admin/customers1', AdminCustomerController::class, 
@@ -54,6 +75,5 @@ Route::middleware(['auth', 'admin'])->group(function (){
         'parameters' => ['games1' => 'game']
     ]);
 
+    
 });
-
-

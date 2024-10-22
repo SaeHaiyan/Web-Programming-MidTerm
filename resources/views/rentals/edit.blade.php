@@ -8,7 +8,7 @@
         
         <form action="{{ route('rentals.update', $rental->id) }}" method="POST">
             @csrf
-            @method('PUT')
+            @method('PUT') 
             
             <div class="form-group mb-4">
                 <label for="user_id" class="font-weight-bold">Customer</label>

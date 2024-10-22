@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Video Game Rental System</title>
+    <title>Register - Video Game Rental System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         .background-image {
-            background-image: url('https://via.placeholder.com/1920x1080');
+            background-image: url('https://static.vecteezy.com/system/resources/previews/006/413/058/non_2x/soft-beautiful-abstract-background-you-can-use-this-background-for-your-content-like-as-technology-video-gaming-promotion-card-banner-sports-education-presentation-website-anymore-vector.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -16,71 +16,97 @@
             font-family: 'Press Start 2P', cursive;
         }
         .form-input {
-            padding: 0.75rem; /* Increase padding for height */
-            width: 100%; /* Ensure it takes full width */
-            font-size: 1rem; /* Increase font size for better readability */
+            padding: 0.75rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .custom-card {
+            background-color: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+        }
+        .card-header {
+            color: yellow;
+        }
+        .btn-custom {
+            background-color: #FF204E;
+            border-radius: 25px;
+            font-family: 'Press Start 2P', cursive;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #FF8F00;
         }
     </style>
 </head>
 <body class="bg-gray-100 background-image">
 
-    <div class="min-h-screen flex flex-col justify-center items-center bg-gray-900 bg-opacity-50">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-white gaming-font">Welcome to Video Game Rental System</h1>
-            <p class="mt-4 text-lg text-gray-300">Your one-stop solution for renting the latest and greatest video games</p>
+    <div class="min-h-screen flex flex-col md:flex-row justify-center items-center bg-gray-900 bg-opacity-50">
+        
+        <!-- Left side: Title and Paragraph -->
+        <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0">
+            <h1 class="text-3xl font-bold text-white gaming-font">Welcome to Video Game Rental System</h1>
+            <p class="mt-4 text-lg text-gray-300">Join us today and get access to an exclusive collection of video games!</p>
         </div>
 
-        <div class="max-w-md w-full bg-white shadow-md rounded-lg p-8">
-            <div class="text-center mb-4">
-                <h2 class="text-2xl font-semibold text-gray-800 gaming-font">Register</h2>
+        <!-- Right side: Register Card -->
+        <div class="md:w-1/2 max-w-md w-full custom-card">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl card-header gaming-font">Register</h2>
             </div>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-
-                <div>
-                    <x-input-label for="name" :value="__('Name')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-                    <x-text-input id="name" class="form-input mt-1 block" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                
+                <!-- Name Input -->
+                <div class="mb-6">
+                    <label for="name" class="block text-sm font-medium text-gray-100 gaming-font">Name</label>
+                    <input id="name" type="text" class="form-input mt-1 block @error('name') border-red-500 @enderror" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <div class="mt-4">
-                    <x-input-label for="email" :value="__('Email')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-                    <x-text-input id="email" class="form-input mt-1 block" type="email" name="email" :value="old('email')" required autocomplete="email" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div>
-        
-                <div class="mt-4">
-                    <x-input-label for="password" :value="__('Password')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-        
-                    <x-text-input id="password" class="form-input mt-1 block"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="new-password" />
-        
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <!-- Email Input -->
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-medium text-gray-100 gaming-font">Email Address</label>
+                    <input id="email" type="email" class="form-input mt-1 block @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <div class="mt-4">
-                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-        
-                    <x-text-input id="password_confirmation" class="form-input mt-1 block"
-                                    type="password"
-                                    name="password_confirmation" required autocomplete="new-password" />
-        
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                <!-- Password Input -->
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-gray-100 gaming-font">Password</label>
+                    <input id="password" type="password" class="form-input mt-1 block @error('password') border-red-500 @enderror" name="password" required autocomplete="new-password">
+                    @error('password')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <div class="mt-4">
-                    <button type="submit" class="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out gaming-font">
-                        {{ __('Register') }}
+                <!-- Confirm Password Input -->
+                <div class="mb-6">
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-100 gaming-font">Confirm Password</label>
+                    <input id="password_confirmation" type="password" class="form-input mt-1 block @error('password_confirmation') border-red-500 @enderror" name="password_confirmation" required autocomplete="new-password">
+                    @error('password_confirmation')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-6">
+                    <button type="submit" class="w-full py-2 px-4 text-sm font-medium text-black btn-custom">
+                        Register
                     </button>
                 </div>
 
-                <!-- Link to Register -->
-                <div class="text-center mt-4">
-                    <a class="text-sm text-indigo-600 hover:text-indigo-500 gaming-font" href="{{ route('login') }}">
-                        Already have an Account?
+                <!-- Login Link -->
+                <div class="text-center">
+                    <a class="text-xs text-red-600 hover:text-gray-500 gaming-font" href="{{ route('login') }}">
+                        Already have an account? Login
                     </a>
                 </div>
             </form>
@@ -89,57 +115,3 @@
 
 </body>
 </html>
-
-{{-- 
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block text-sm font-medium text-gray-700 gaming-font"/>
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="text-sm text-indigo-600 hover:text-indigo-500 gaming-font">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
