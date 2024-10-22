@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminGameController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminRentalController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\FavoriteController;
 
 // Authentication routes
 Route::get('/', function () {
@@ -43,6 +44,12 @@ Route::get('/legal-terms', function () {
 Route::get('/privacy-policy', function () {
     return view('privacy-policy'); // Ensure this view exists
 })->name('privacy-policy');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorites/{gameId}', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::delete('/favorites/{gameId}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+});
 
 // routes/web.php
 

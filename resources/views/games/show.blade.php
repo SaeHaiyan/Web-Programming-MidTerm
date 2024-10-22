@@ -25,6 +25,18 @@
                     <p style="font-size: 2rem; color: rgb(200, 200, 200);">${{ number_format($game->price, 2) }}</p>
                 </div>
             </div>
+            <div class="col-md-6 mb-3">
+                <div class="card" style="background-color: rgba(255, 255, 255, 0.15); border-radius: 15px; border: none; padding: 15px; text-align: center;">
+                    <h6 style="color: yellow; font-size: 1.5rem;">Year Released</h6>
+                    <p style="font-size: 2rem; color: rgb(200, 200, 200);">{{ $game->year }}</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card" style="background-color: rgba(255, 255, 255, 0.15); border-radius: 15px; border: none; padding: 15px; text-align: center;">
+                    <h6 style="color: yellow; font-size: 1.5rem;">Price</h6>
+                    <p style="font-size: 20px; color: rgb(200, 200, 200);">{{ $game->description }}</p>
+                </div>
+            </div>
         </div>
 
         <a href="{{ route('games.index') }}" class="btn mt-4" style="background-color: #FF204E; color: white; width: 100%; padding: 15px; font-family: 'Press Start 2P', cursive; font-size: 1.2rem;">

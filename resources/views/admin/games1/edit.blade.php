@@ -31,6 +31,16 @@
                     <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ $game->price }}" required style="border-radius: 10px;"/>
                 </div>
 
+                <div class="form-group mb-4">
+                    <label for="year" class="font-weight-bold" style="font-family: 'Space Mono', monospace; color: #FFD700;">Year</label> <!-- Styled label -->
+                    <input type="number" step="0.01" class="form-control" id="year" name="year" value="{{ $game->year }}" required style="border-radius: 10px;"/>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="description" class="font-weight-bold" style="font-family: 'Space Mono', monospace; color: #FFD700;">Description</label> <!-- Styled label -->
+                    <input type="text" class="form-control" id="description" name="description" value="{{ $game->description }}" required style="border-radius: 10px;"/>
+                </div>
+
                 <!-- Image input field -->
                 <div class="form-group mb-4">
                     <label for="image" class="form-label"><i class="fas fa-image"></i> Game Image</label>

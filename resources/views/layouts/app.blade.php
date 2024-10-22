@@ -189,13 +189,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about-us') }}">About</a>
                         </li>
-                        <!-- Authentication Links -->
                         @auth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }} <!-- Display current user's name -->
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('favorites.index') }}">
+                                            <i class="fas fa-star"></i> Favorites <!-- Logo/icon added here -->
+                                        </a>
+                                    </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt"></i> Logout <!-- Logout icon with text -->
@@ -227,8 +231,9 @@
                     <div class="footer-section links">
                         <h5>Quick Links</h5>
                         <ul>
-                            <li><a href="#">Rentals</a></li>
-                            <li><a href="#">Games</a></li>
+                            <li><a href="{{ route('rentals.index') }}">Rentals</a></li>
+                            <li><a href="{{ route('games.index') }}">Games</a></li>
+                            <li><a href="{{ route('favorites.index') }}">Favorites</a></li> <!-- Favorites link -->
                             <li><a href="{{ route('about-us') }}">About Us</a></li>
                         </ul>
                     </div>

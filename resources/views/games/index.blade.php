@@ -8,12 +8,12 @@
     <form action="{{ route('games.index') }}" method="GET" class="mb-4 d-flex flex-wrap align-items-center">
         <div class="input-group flex-grow-1 me-2">
             <input type="text" name="search" class="form-control" placeholder="Search for games..." aria-label="Search for games" value="{{ request()->input('search') }}" style="border-radius: 25px; border: 2px solid #FF204E; font-family: 'Space Mono', monospace;">
-            <button class="btn" type="submit" style="border-radius: 25px; background-color: #FF204E; color: white; font-family: 'Space Mono', monospace; margin-left: 10px;"> <!-- Added margin-left here -->
+            <button class="btn" type="submit" style="border-radius: 25px; background-color: #FF204E; color: white; font-family: 'Space Mono', monospace; margin-left: 10px;">
                 <i class="fas fa-search"></i>
             </button>
         </div>
     
-        <div class="d-flex align-items-center mt-3"> <!-- Add margin-top here for spacing -->
+        <div class="d-flex align-items-center mt-3">
             <select id="sort" name="sort" class="form-select me-2" onchange="this.form.submit()" style="max-width: 150px;">
                 <option value="title" {{ request()->input('sort') == 'title' ? 'selected' : '' }}>Sort by Title</option>
                 <option value="price" {{ request()->input('sort') == 'price' ? 'selected' : '' }}>Sort by Price</option>
@@ -28,13 +28,11 @@
                 <option value="Sports" {{ request()->input('genre') == 'Sports' ? 'selected' : '' }}>Sports</option>
                 <option value="Fighting Game" {{ request()->input('genre') == 'Fighting Game' ? 'selected' : '' }}>Fighting Game</option>
                 <option value="FPS" {{ request()->input('genre') == 'FPS' ? 'selected' : '' }}>FPS</option>
-                <!-- Add other genres as necessary -->
             </select>
             <a href="{{ route('games.index') }}" class="btn btn-secondary" style="padding: 10px 20px; background-color: #FF8F00; color:rgba(0, 0, 0, 0.7); font-size: 1em; border-radius: 25px; font-family: 'Space Mono', monospace; white-space: nowrap;">Clear Filters</a>
         </div>
     </form>
     
-
     <!-- Search Feedback -->
     @if(isset($search) && $games->count())
         <p style="color: white;">{{ $games->count() }} game(s) found for "{{ $search }}".</p>
@@ -52,6 +50,13 @@
                         <p class="card-text" style="font-family: 'Space Mono', monospace;">Genre: {{ $game->genre }}</p>
                         <p class="card-text" style="font-family: 'Space Mono', monospace;">Price: ${{ number_format($game->price, 2) }}</p>
                         <a href="{{ route('games.show', $game->id) }}" class="btn" style="background-color: #26355D; color: white; width: 100%;">View</a>
+                        <!-- Favorite Button with confirmation -->
+                        <form action="{{ route('favorites.store', $game->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to add this game to your favorites?');">
+                            @csrf
+                            <button type="submit" class="btn btn-warning" style="width: 100%; border-radius: 25px;">
+                                Add to Favorites
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

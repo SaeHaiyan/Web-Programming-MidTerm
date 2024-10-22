@@ -25,6 +25,11 @@
                     <label for="price" class="form-label"><i class="fas fa-dollar-sign"></i> Price</label>
                     <input type="number" step="0.01" class="form-control" id="price" name="price" required style="font-family: 'Space Mono', monospace;">
                 </div>
+                <!-- Year input field -->
+                <div class="form-group mb-4">
+                    <label for="genre" class="form-label"><i class="fas fa-tag"></i> Genre</label>
+                    <input type="number" class="form-control" id="genre" name="genre" required style="font-family: 'Space Mono', monospace;">
+                </div>
                 <!-- Image input field -->
                 <div class="form-group mb-4">
                     <label for="image" class="form-label"><i class="fas fa-image"></i> Game Image</label>

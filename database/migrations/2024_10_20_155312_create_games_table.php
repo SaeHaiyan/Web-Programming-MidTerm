@@ -15,6 +15,8 @@ class CreateGamesTable extends Migration
             $table->decimal('price', 8, 2); // price with 2 decimal places
             $table->string('image')->nullable(); // Column to store image path
             $table->timestamps();
+            $table->string('year');
+            $table->timestamps('description');
         });
     }
 
