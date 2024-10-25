@@ -66,7 +66,10 @@
                         <p class="main-menu-header">{{ __('Video Game Rental System') }}</p>
 
                         <!-- Intro paragraph -->
-                        <p class="intro-paragraph">{{ __('We are committed to providing the best experience for managing your video game rental business. If you have any questions or need assistance, feel free to reach out to our support team.') }}</p>
+                        <p class="intro-paragraph">
+                            {{ __('We are committed to providing the best experience for managing your video game rental business. 
+                            If you have any questions or need assistance, feel free to reach out to our support team.') }}
+                        </p>
 
                         <!-- Horizontal buttons below the paragraph -->
                         <div class="button-group">

@@ -38,7 +38,8 @@
                     </tbody>
                 </table>
                 
-                <a href="{{ route('rentals.index') }}" class="btn" style="background-color: rgb(5, 130, 175); color: white; font-family: 'Press Start 2P', cursive; width: 100%; padding: 15px; font-size: 20px; border-radius: 8px; margin-top: 20px;">
+                <a href="{{ route('rentals.index') }}" class="btn" style="background-color: rgb(5, 130, 175); color: white; 
+                font-family: 'Press Start 2P', cursive; width: 100%; padding: 15px; font-size: 20px; border-radius: 8px; margin-top: 20px;">
                     <i class="fas fa-arrow-left"></i> Back
                 </a>
             </div>
